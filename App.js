@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native'
+
+import AppStack from './app/navigation/AppStack'
+import SearchCategory from './app/context/SearchCategory'
 
 export default function App() {
+  const [searchCat, setSearchCat] = useState('For You');
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SearchCategory.Provider value={{searchCat, setSearchCat}}>
+        <AppStack/>
+      </SearchCategory.Provider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
